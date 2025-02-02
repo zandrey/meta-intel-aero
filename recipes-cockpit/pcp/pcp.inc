@@ -21,7 +21,7 @@ CACHED_CONFIGUREVARS = "PACKAGE_DISTRIBUTION=arch"
 EXTRA_OECONF = "--without-python --without-python3 --without-perl --without-qt --without-qt3d"
 EXTRA_OEMAKE = ""
 
-do_configure_prepend() {
+do_configure:prepend() {
     cp ${WORKDIR}/config.linux ${B}
     export SED=${TMPDIR}/hosttools/sed
 }

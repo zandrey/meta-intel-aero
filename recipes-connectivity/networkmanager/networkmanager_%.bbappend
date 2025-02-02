@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 SRC_URI += "file://firstboot-networkmanager.service"
 SRC_URI += "file://firstboot-networkmanager-setup"
@@ -11,9 +11,9 @@ PACKAGECONFIG += "systemd"
 
 DEPENDS += "nss"
 
-SYSTEMD_SERVICE_${PN} += "firstboot-networkmanager.service"
+SYSTEMD_SERVICE:${PN} += "firstboot-networkmanager.service"
 
-do_install_append() {
+do_install:append() {
     install -D -m 0755 ${WORKDIR}/firstboot-networkmanager-setup ${D}/usr/sbin
     install -D -m 0644 ${WORKDIR}/firstboot-networkmanager.service ${D}${systemd_unitdir}/system
     install -D -m 0644 ${WORKDIR}/NetworkManager.conf ${D}${sysconfdir}/NetworkManager

@@ -5,7 +5,7 @@ inherit packagegroup
 
 PR = "r0"
 
-RDEPENDS_${PN} = "\
+RDEPENDS:${PN} = "\
 		python-cryptography \
 		AirMapSDK-Embedded \
 		python-paho-mqtt \

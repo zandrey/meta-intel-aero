@@ -1,1 +1,1 @@
-FILES_${PN} += "${includedir}/${PN}"
+FILES:${PN} += "${includedir}/${PN}"

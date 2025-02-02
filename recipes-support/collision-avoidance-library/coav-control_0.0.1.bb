@@ -10,13 +10,13 @@ SRC_URI = "gitsm://git@github.com/01org/collision-avoidance-library.git;protocol
 
 S = "${WORKDIR}/git"
 
-FILES_${PN} += "${systemd_system_unitdir}/coav-control.service"
+FILES:${PN} += "${systemd_system_unitdir}/coav-control.service"
 
 inherit cmake pythonnative
 
 EXTRA_OECMAKE = "-DWITH_TOOLS=ON -DWITH_REALSENSE=ON"
 
-do_configure_prepend() {
+do_configure:prepend() {
     export PYTHONPATH="${PKG_CONFIG_SYSROOT_DIR}/usr/lib/python2.7/site-packages/"
 }
 

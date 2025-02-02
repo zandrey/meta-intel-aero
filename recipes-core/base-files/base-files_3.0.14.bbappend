@@ -1,11 +1,11 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/base-files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/base-files:"
 SRC_URI += "file://media-sdcard.mount"
 SRC_URI += "file://media-sdcard.automount"
 
 # override default volatile to suppress var/log link creation
 volatiles = "tmp"
 
-do_install_append() {
+do_install:append() {
 	# enable mount of the SDCard in /media/sdcard when inserted
 	install -d ${D}${systemd_unitdir}/system
 	install -c -m 0644 ${WORKDIR}/media-sdcard.mount ${D}${systemd_unitdir}/system
@@ -16,6 +16,6 @@ do_install_append() {
 		${D}${sysconfdir}/systemd/system/local-fs.target.wants/media-sdcard.automount
 }
 
-FILES_${PN} += "${base_libdir}/systemd/system/*.mount"
-FILES_${PN} += "${base_libdir}/systemd/system/*.automount"
-FILES_${PN} += "${sysconfdir}/systemd/system/local-fs.target.wants/*.automount"
+FILES:${PN} += "${base_libdir}/systemd/system/*.mount"
+FILES:${PN} += "${base_libdir}/systemd/system/*.automount"
+FILES:${PN} += "${sysconfdir}/systemd/system/local-fs.target.wants/*.automount"

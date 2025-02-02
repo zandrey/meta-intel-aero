@@ -7,7 +7,7 @@ inherit packagegroup
 
 PR = "r0"
 
-RDEPENDS_${PN} = "\
+RDEPENDS:${PN} = "\
 		python-pyserial \
 		python-argparse \
 		python-json \

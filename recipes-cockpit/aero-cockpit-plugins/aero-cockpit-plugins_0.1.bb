@@ -22,4 +22,4 @@ do_install() {
     make V=1 DEST=${D} install
 }
 
-FILES_${PN} = "${datadir}"
+FILES:${PN} = "${datadir}"

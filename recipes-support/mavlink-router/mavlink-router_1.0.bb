@@ -17,11 +17,11 @@ inherit autotools pythonnative pkgconfig systemd
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}"
 PACKAGECONFIG[systemd] = "--enable-systemd --with-systemdsystemunitdir=${systemd_unitdir}/system/,--disable-systemd"
 
-do_compile_prepend () {
+do_compile:prepend () {
     export PYTHONPATH="${PKG_CONFIG_SYSROOT_DIR}/usr/lib/python2.7/site-packages/"
 }
 
-do_install_append () {
+do_install:append () {
     install -D -m 0755 ${WORKDIR}/mavlink-routerd.sh ${D}${sysconfdir}/init.d/mavlink-routerd.sh
 
     install -d ${D}${sysconfdir}/mavlink-router/config.d
@@ -35,4 +35,4 @@ do_install_append () {
 python rm_sysvinit_initddir (){
 }
 
-SYSTEMD_SERVICE_${PN} = "mavlink-router.service"
+SYSTEMD_SERVICE:${PN} = "mavlink-router.service"

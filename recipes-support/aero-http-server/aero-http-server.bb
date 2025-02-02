@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 LICENSE = "GPLv2"
 LICENSE_PATH = "${S}"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
@@ -10,10 +10,10 @@ SRC_URI += "file://aero-http-server.py \
             file://camera-def-rs-rgb.xml \
            "
 
-FILES_${PN} += "${bindir}/aero-http-server.py \
+FILES:${PN} += "${bindir}/aero-http-server.py \
                 ${systemd_unitdir}/system/aero-http-server.socket \
                "
-SYSTEMD_AUTO_ENABLE="enable"
+SYSTEMD_AUTO_ENABLE = "enable"
 
 do_install() {
         install -d ${D}${localstatedir}/http
@@ -25,5 +25,4 @@ do_install() {
         install -m 0644 ${WORKDIR}/camera-def-rs-rgb.xml ${D}${localstatedir}/http
 }
 
-SYSTEMD_SERVICE_${PN} += "aero-http-server.service"
-          
+SYSTEMD_SERVICE:${PN} += "aero-http-server.service"

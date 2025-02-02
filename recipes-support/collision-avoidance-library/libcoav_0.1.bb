@@ -17,20 +17,20 @@ EXTRA_OECMAKE = "-DWITH_REALSENSE=ON -DWITH_GAZEBO=OFF -DWITH_TOOLS=OFF -DWITH_V
 
 PACKAGES = "${PN} ${PN}-dev ${PN}-dbg"
 
-FILES_${PN} += "\
+FILES:${PN} += "\
     ${libdir}/*.so.* \
 "
 
-FILES_${PN}-dev += "\
+FILES:${PN}-dev += "\
     ${libdir}/*.so \
     ${includedir}/${PN} \
 "
 
-FILES_${PN}-dbg += "${bindir}/.debug"
+FILES:${PN}-dbg += "${bindir}/.debug"
 
 # avoid packaging error
-INSANE_SKIP_${PN} = "ldflags"
+INSANE_SKIP:${PN} = "ldflags"
 
-do_configure_prepend() {
+do_configure:prepend() {
     export PYTHONPATH="${PKG_CONFIG_SYSROOT_DIR}/usr/lib/python2.7/site-packages/"
 }

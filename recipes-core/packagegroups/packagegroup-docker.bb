@@ -7,5 +7,5 @@ inherit packagegroup
 
 PR = "r0"
 
-RDEPENDS_${PN} = "docker"
-RDEPENDS_${PN} += "docker-contrib"
+RDEPENDS:${PN} = "docker"
+RDEPENDS:${PN} += "docker-contrib"

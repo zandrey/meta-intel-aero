@@ -15,13 +15,13 @@ inherit autotools pythonnative pkgconfig update-rc.d systemd
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}"
 PACKAGECONFIG[systemd] = "--enable-systemd --with-systemdsystemunitdir=${systemd_unitdir}/system/,--disable-systemd"
 
-EXTRA_OECONF_append = " --enable-aero"
+EXTRA_OECONF:append = " --enable-aero"
 
-do_compile_prepend () {
+do_compile:prepend () {
     export PYTHONPATH="${PKG_CONFIG_SYSROOT_DIR}/usr/lib/python2.7/site-packages/"
 }
 
-do_install_append () {
+do_install:append () {
     if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'true', 'false', d)}; then
 	install -d ${D}${sysconfdir}/init.d
 	install -m 0755 ${WORKDIR}/csd ${D}${sysconfdir}/init.d
@@ -31,6 +31,6 @@ do_install_append () {
     install -m 0644 ${WORKDIR}/main.conf ${D}${sysconfdir}/csd/
 }
 
-SYSTEMD_SERVICE_${PN} = "csd.service"
+SYSTEMD_SERVICE:${PN} = "csd.service"
 INITSCRIPT_NAME = "csd"
 INITSCRIPT_PARAMS = "defaults 72"

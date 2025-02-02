@@ -1,1 +1,1 @@
-RDEPENDS_${PN} += "glibc-gconv-utf-16"
+RDEPENDS:${PN} += "glibc-gconv-utf-16"
